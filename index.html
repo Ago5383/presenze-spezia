@@ -455,11 +455,11 @@ function renderStats() {
 
         stats.forEach(s => {
             // Calcolo dell'icona di stato in base alla percentuale
-            let statusEmoji = '🟢 😊'; // Default / Ottimo (>= 75%)
+            let statusEmoji = '🟢'; // Default / Ottimo (>= 75%)
             if (s.percentuale < 50) {
-                statusEmoji = '🔴 😟'; // Critico (< 50%)
+                statusEmoji = '🔴'; // Critico (< 50%)
             } else if (s.percentuale < 75) {
-                statusEmoji = '🟡 😐'; // Attenzione (50% - 74%)
+                statusEmoji = '🟡'; // Attenzione (50% - 74%)
             }
 
             const tr = document.createElement('tr');
