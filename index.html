@@ -249,6 +249,7 @@
             #tab-riepilogo td:nth-of-type(4):before { content: "Allenamenti"; }
             #tab-riepilogo td:nth-of-type(5):before { content: "Partite"; }
             #tab-riepilogo td:nth-of-type(6):before { content: "% Presenza"; }
+            #tab-riepilogo td:nth-of-type(7):before { content: "Stato"; }
         }
     </style>
 </head>
@@ -328,6 +329,7 @@
                         <th class="sortable" id="th-presenzeAllenamento">Allenamenti <span id="sort-icon-presenzeAllenamento"></span></th>
                         <th class="sortable" id="th-presenzePartita">Partite <span id="sort-icon-presenzePartita"></span></th>
                         <th class="sortable" id="th-percentuale">% Presenza <span id="sort-icon-percentuale"></span></th>
+                        <th>Stato</th>
                     </tr>
                 </thead>
                 <tbody id="stats-table-body"></tbody>
@@ -514,12 +516,12 @@ function renderStats() {
         });
 
         stats.forEach(s => {
-            // Calcolo dell'icona di stato in base alla percentuale
-            let statusEmoji = '🟢'; // Default / Ottimo (>= 75%)
+            // Assegnazione del solo pallino colorato
+            let statusBadge = '🟢'; // Verde per >= 75%
             if (s.percentuale < 50) {
-                statusEmoji = '🔴'; // Critico (< 50%)
+                statusBadge = '🔴'; // Rosso per < 50%
             } else if (s.percentuale < 75) {
-                statusEmoji = '🟡'; // Attenzione (50% - 74%)
+                statusBadge = '🟡'; // Giallo per 50% - 74%
             }
 
             const tr = document.createElement('tr');
@@ -529,7 +531,8 @@ function renderStats() {
                 <td style="color: var(--danger-color); font-weight: bold;">${s.assenzeTotali}</td>
                 <td>${s.presenzeAllenamento}</td>
                 <td>${s.presenzePartita}</td>
-                <td><strong>${s.percentuale}%</strong> ${statusEmoji}</td>
+                <td><strong>${s.percentuale}%</strong></td>
+                <td style="text-align: center; font-size: 1.2rem;">${statusBadge}</td>
             `;
             tbody.appendChild(tr);
         });
