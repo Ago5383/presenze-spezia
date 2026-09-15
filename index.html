@@ -422,7 +422,7 @@
         });
     }
 
-    function renderStats() {
+function renderStats() {
         const tbody = document.getElementById('stats-table-body');
         tbody.innerHTML = '';
 
@@ -454,6 +454,14 @@
         });
 
         stats.forEach(s => {
+            // Calcolo dell'icona di stato in base alla percentuale
+            let statusEmoji = '🟢 😊'; // Default / Ottimo (>= 75%)
+            if (s.percentuale < 50) {
+                statusEmoji = '🔴 😟'; // Critico (< 50%)
+            } else if (s.percentuale < 75) {
+                statusEmoji = '🟡 😐'; // Attenzione (50% - 74%)
+            }
+
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td><strong>${s.name}</strong></td>
@@ -461,7 +469,7 @@
                 <td style="color: var(--danger-color); font-weight: bold;">${s.assenzeTotali}</td>
                 <td>${s.presenzeAllenamento}</td>
                 <td>${s.presenzePartita}</td>
-                <td><strong>${s.percentuale}%</strong></td>
+                <td><strong>${s.percentuale}%</strong> ${statusEmoji}</td>
             `;
             tbody.appendChild(tr);
         });
