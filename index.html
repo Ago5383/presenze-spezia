@@ -190,6 +190,66 @@
             .status-buttons { width: 100%; }
             .btn-status { flex: 1; text-align: center; }
         }
+        /* Ottimizzazioni specifiche per Mobile */
+        @media (max-width: 600px) {
+            body { padding: 10px 5px; }
+            .header-title h1 { font-size: 1.4rem; }
+            
+            /* Trasforma la tabella in un elenco a schede leggibile su cellulare */
+            #tab-riepilogo table, 
+            #tab-riepilogo thead, 
+            #tab-riepilogo tbody, 
+            #tab-riepilogo th, 
+            #tab-riepilogo td, 
+            #tab-riepilogo tr { 
+                display: block; 
+            }
+            
+            #tab-riepilogo thead tr { 
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            #tab-riepilogo tr { 
+                margin-bottom: 12px;
+                background: #fff;
+                border: 1px solid #E2E8F0;
+                border-radius: 8px;
+                padding: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+            
+            #tab-riepilogo td { 
+                border: none;
+                border-bottom: 1px solid #edf2f7; 
+                position: relative;
+                padding-left: 50%; 
+                text-align: right;
+            }
+            
+            #tab-riepilogo td:last-child { border-bottom: 0; }
+            
+            #tab-riepilogo td:before { 
+                position: absolute;
+                top: 12px;
+                left: 10px;
+                width: 45%; 
+                padding-right: 10px; 
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: var(--blu-navy);
+            }
+
+            /* Etichette per la visualizzazione mobile */
+            #tab-riepilogo td:nth-of-type(1):before { content: "Giocatore"; }
+            #tab-riepilogo td:nth-of-type(2):before { content: "Presenze Tot."; }
+            #tab-riepilogo td:nth-of-type(3):before { content: "Assenze Tot."; }
+            #tab-riepilogo td:nth-of-type(4):before { content: "Allenamenti"; }
+            #tab-riepilogo td:nth-of-type(5):before { content: "Partite"; }
+            #tab-riepilogo td:nth-of-type(6):before { content: "% Presenza"; }
+        }
     </style>
 </head>
 <body>
